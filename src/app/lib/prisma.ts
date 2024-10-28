@@ -10,6 +10,7 @@ const globalForPrisma = global as unknown as{
 
 if (!globalForPrisma.prisma) {
   globalForPrisma.prisma = new PrismaClient();
+  console.log("プリズマの生成") //GetProviders検証用
 }
 
 prisma = globalForPrisma.prisma;
