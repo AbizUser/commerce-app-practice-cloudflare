@@ -60,7 +60,7 @@ const Book = ({ book }: BookProps) => {
       setShowModal(false);
       //ログインページへリダイレクト
       router.push("/login")
-    }　else {
+    } else {
       //Stripeで決済する
       startCheckout();
     }

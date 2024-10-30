@@ -11,6 +11,7 @@ const PurchaseSuccess = () => {
   const sessionId = searchParams.get("session_id");
 
   console.log(`sessionId:from checkout-seccess;${sessionId}`);
+  console.log(`sessionId:from checkout-seccess;${bookUrl}`);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +19,7 @@ const PurchaseSuccess = () => {
         console.log(`sessionId-1 : ${sessionId}`)
         try {
           console.log(`sessionId-1 : ${sessionId}`);
-          const response = await fetch(
+          const res = await fetch(
             `${process.env.NEXT_PUBLIC_API_URL}/checkout/success`,
             {
               method: "POST",
@@ -28,9 +29,10 @@ const PurchaseSuccess = () => {
           );
           // console.log(await res.json())
           console.log("before await")
-          const data = await response.json();
-          console.log( `DataData : ${data}`);
+          const data = await res.json();
+          console.log( `DataData : ${data.data}`);
           setBookUrl(data.purchase.bookId);
+          // setBookUrl(data.purchase.bookId);
         } catch (error) {
           console.error("Error fetching data", error);
         }
@@ -50,6 +52,7 @@ const PurchaseSuccess = () => {
         </p>
         <div className="mt-6 text-center">
           <Link
+
             href={`/book/${bookUrl}`}
             className="text-indigo-600 hover:text-indigo-800 transition duration-300"
           >
