@@ -14,6 +14,8 @@ const nextConfig = {
       },
     ],
   },
+  reactStrictMode: false,
+  //発火回数を制限
 }
 
 module.exports = nextConfig

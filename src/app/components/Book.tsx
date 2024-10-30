@@ -15,21 +15,29 @@ type BookProps = {
 const Book = ({ book }: BookProps) => {
   const [showModal, setShowModal ] = useState(false);
   const {data: session} = useSession();
-  const user = session?.user;
+  const user: any = session?.user;
   const router = useRouter();
-
+  // console.log(user.id);
+  // console.log(book.title);
+  // console.log("VERIFIVATION OF PRISMA")
+  // console.log(`user?.id::: - ${user?.id}`);
+  // console.log(`user.price::: - ${book.price}`);
+  
   const startCheckout = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title: book.title,
-          price: book.price,
-        }),
-      }
-    );
+        `${process.env.NEXT_PUBLIC_API_URL}/checkout`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: book.title,
+            price: book.price,
+            userId: user?.id,
+            bookId: book.id,
+          }),
+        }
+      );
       const responseData = await response.json();
       if (responseData) {
         router.push(responseData.checkout_url)
@@ -54,7 +62,7 @@ const Book = ({ book }: BookProps) => {
       router.push("/login")
     }　else {
       //Stripeで決済する
-      startCheckout()
+      startCheckout();
     }
   };
   
