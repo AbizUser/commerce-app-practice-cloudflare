@@ -1,9 +1,11 @@
-import type { Metadata } from 'next'
+import type { Metadata } from 'next';
 // import { Inter } from 'next/font/google'
-import { Noto_Sans_JP } from 'next/font/google'
-import './globals.css'
-import Header from './components/Header'
-import { NextAuthProvider } from './lib/next-auth/provider'
+import { Noto_Sans_JP } from 'next/font/google';
+import './globals.css';
+import Header from './components/Header';
+import { NextAuthProvider } from './lib/next-auth/provider';
+import { Suspense } from 'react';
+import Loading from "./loading";
 
 const notoSansJP = Noto_Sans_JP({ subsets: ['latin'], weight:["400"]})
 
@@ -22,7 +24,9 @@ export default function RootLayout({
       <body className={notoSansJP.className}>
           <NextAuthProvider>
           <Header />
-          {children}
+          <Suspense fallback={<Loading/>}>
+            {children}
+          </Suspense>
         </NextAuthProvider>
       </body>
     </html>
