@@ -11,13 +11,21 @@ export default async function Home() {
   const session = await getServerSession(nextAuthOptions);
   const user: any = session?.user;
   
+  let purchaseBookIds: any;
+
   //購入済みの本を事前に取得
   if( user ){
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`
+      `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`,
+      { cache: "no-store" }//SSR SSGを用いたい場合にはforce-cacheを用いる 
     );
     const purchasesData = await response.json();
     console.log(purchasesData);
+
+    purchaseBookIds = purchasesData.map(
+      ( purchaseBook :any ) => purchaseBook.bookId
+    );
+    // console.log(purchaseBookIds)
   }
 
   return (
@@ -30,6 +38,7 @@ export default async function Home() {
           <Book
             key={book.id}
             book={book}
+            isPurchased={purchaseBookIds.includes(book.id)}
           />
         ))}
       </main>
