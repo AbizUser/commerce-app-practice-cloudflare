@@ -3,14 +3,15 @@ import Book from "./components/Book";
 import { getAllBooks } from "./lib/microcms/client";
 import { BookType } from "./types/types";
 import { nextAuthOptions } from "./lib/next-auth/options";
-import { User } from "@prisma/client";
+// import { User } from "@prisma/client";
 
 //APIを叩く
 
 export default async function Home() {
   const { contents } = await getAllBooks();
   const session = await getServerSession(nextAuthOptions);
-  const user: User = session?.user as User; //値があるのか不明な時に記述
+  const user: any = session?.user; //値があるのか不明な時に記述
+  // const user: User = session?.user as User; //値があるのか不明な時に記述
   
   let purchaseBookIds: string[];
 
