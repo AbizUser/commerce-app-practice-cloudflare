@@ -6,7 +6,7 @@ type BookType = {
   thumbnail: { url: string };
   createdAt: string;
   updatedAt: string; 
-}
+};
 
 type Purchase = {
   id: string;
@@ -14,14 +14,14 @@ type Purchase = {
   bookId: string;
   sessionId: string;
   createAt: User;
-}
+};
 
 type User = {
   id: string;
   name?: string | null | undefined;
   email?: string | null | undefined;
   image?: string | null | undefined;
-}
+};
 
 //prisma.shchemaでの定義をここで型定義している。
 // type Purchase = {
@@ -32,4 +32,4 @@ type User = {
 //   user: User;
 // }
 
-export type {BookType, User, Purchase};
+export type {BookType, User, Purchase };

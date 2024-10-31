@@ -28,22 +28,27 @@ const Header = async () => {
             ホーム
           </Link>
           <Link
-            href={user ? "/profile" : "login"}
+            // href={user ? "/profile" : "/login"}
+            href={user ? "/profile" : "api/auth/signin"} //ログインページを実装する方法
             className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
           >
             {user ? "プロフィール" : "ログイン"}
           </Link>
 
           {user ? (
-            <button 
-            // onClick={() => signOut({ callbackUrl: "/login"})}
+            // <button //クライアントコンポーネントを利用する場合にはこちらを記述 
+            // // onClick={() => signOut({ callbackUrl: "/login"})}
+            // className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+            //   ログアウト
+            // </button>
+            <Link //NextOAuthで提供されているログアウト
+            href={"api/auth/signout"}
             className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
               ログアウト
-            </button>
+            </Link>
             ) : (
             ""
             )}
-
           <Link href={`/profile`}>
             <Image
               width={50}

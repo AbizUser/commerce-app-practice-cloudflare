@@ -39,7 +39,7 @@ export default async function Home() {
           <Book
             key={book.id}
             book={book}
-            isPurchased={purchaseBookIds.includes(book.id)}
+            isPurchased={purchaseBookIds?.includes(book.id) ?? false}
             //ここで型の定義が異なっている場合にはtype.tsを参照
           />
         ))}
