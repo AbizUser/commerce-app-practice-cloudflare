@@ -22,7 +22,6 @@ export default async function Home() {
       { cache: "no-store" }//SSR SSGを用いたい場合にはforce-cacheを用いる 
     );
     const purchasesData = await response.json();
-    console.log(purchasesData);
 
     purchaseBookIds = purchasesData.map(
       ( purchaseBook :any ) => purchaseBook.bookId
