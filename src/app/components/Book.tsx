@@ -70,7 +70,6 @@ const Book = ({ book, isPurchased }: BookProps) => {
       startCheckout();
     }
   };
-  
 
   return (
     <>
