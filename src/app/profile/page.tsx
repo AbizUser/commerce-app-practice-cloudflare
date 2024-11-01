@@ -13,7 +13,7 @@ export default async function ProfilePage() {
 
   let purchasesDetailBooks: BookType[] = [];
 
-  //購入済みの本を事前に取得
+  //購入済みの本を表示するために事前に取得する
   if( user ){
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`,
@@ -33,7 +33,6 @@ export default async function ProfilePage() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-xl font-bold mb-4">プロフィール</h1>
-
       <div className="bg-white shadow-md rounded p-4">
         <div className="flex items-center">
           <Image

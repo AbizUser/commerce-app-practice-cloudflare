@@ -3,9 +3,9 @@ import Image from "next/image";
 import React from "react";
 
 const DetailBook = async ({ params }: { params: { id: string } }) => {
-  console.log(params.id);
+  // console.log(params.id);
   const book = await getDetailBook(params.id); //SSR
-  console.log(book);
+  // console.log(book);
 
   return (
     <div className="container mx-auto p-4">

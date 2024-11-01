@@ -2,7 +2,7 @@
 //useStateを使用する時にはuseClientを付けるのを忘れずに。
 
 import Image from "next/image";
-import { BookType } from "../types/types";
+import { BookType, User } from "../types/types";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -10,19 +10,17 @@ import { useRouter } from "next/navigation";
 type BookProps = {
   book: BookType;
   isPurchased: boolean;
+  user: User;
 };
 
 // eslint-disable-next-line react/display-name
-const Book = ({ book, isPurchased }: BookProps) => {
+const Book = ({ book, isPurchased, user }: BookProps) => {
   const [showModal, setShowModal ] = useState(false);
-  const {data: session} = useSession();
-  const user: any = session?.user;
+  // const {data: session} = useSession();
+  // const user: any = session?.user;
   const router = useRouter();
   // console.log(user.id);
   // console.log(book.title);
-  // console.log("VERIFIVATION OF PRISMA")
-  // console.log(`user?.id::: - ${user?.id}`);
-  // console.log(`user.price::: - ${book.price}`);
   
   const startCheckout = async () => {
     try {

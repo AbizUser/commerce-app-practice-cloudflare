@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import Book from "./components/Book";
 import { getAllBooks } from "./lib/microcms/client";
-import { BookType } from "./types/types";
+import { BookType, User } from "./types/types";
 import { nextAuthOptions } from "./lib/next-auth/options";
 // import { User } from "@prisma/client";
 
@@ -9,8 +9,8 @@ import { nextAuthOptions } from "./lib/next-auth/options";
 
 export default async function Home() {
   const { contents } = await getAllBooks();
-  const session = await getServerSession(nextAuthOptions);
-  const user: any = session?.user; //値があるのか不明な時に記述
+  const session = await getServerSession(nextAuthOptions); //ISR
+  const user = session?.user as User; 
   // const user: User = session?.user as User; //値があるのか不明な時に記述
   
   let purchaseBookIds: string[];
@@ -41,6 +41,7 @@ export default async function Home() {
             book={book}
             isPurchased={purchaseBookIds?.includes(book.id) ?? false}
             //ここで型の定義が異なっている場合にはtype.tsを参照
+            user={user}
           />
         ))}
       </main>

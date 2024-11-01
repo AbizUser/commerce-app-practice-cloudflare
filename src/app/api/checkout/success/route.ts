@@ -6,12 +6,12 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(request: Request, response: Response) {
   const { sessionId } = await request.json();
-  console.log(sessionId)
+  // console.log(sessionId)
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
-    console.log(`bookId from route.ts of success${session.metadata?.bookId}`);
-    console.log(`bookId from route.ts of success${session.client_reference_id!}`);
-    console.log("Full session object:", JSON.stringify(session, null, 2));
+    // console.log(`bookId from route.ts of success${session.metadata?.bookId}`);
+    // console.log(`bookId from route.ts of success${session.client_reference_id!}`);
+    // console.log("Full session object:", JSON.stringify(session, null, 2));
 
     const existingPurchase = await prisma.purchase.findFirst({
       where: {

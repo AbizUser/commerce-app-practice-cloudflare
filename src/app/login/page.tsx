@@ -5,7 +5,6 @@ import { getProviders, signIn } from "next-auth/react";
 
 async function Login() {
   const providers = await getProviders().then((res) => {
-    console.log(res);
     return res;
   });
   

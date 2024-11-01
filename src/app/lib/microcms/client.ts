@@ -16,7 +16,6 @@ export const getAllBooks = async () => {
         }
       }
   });
-
   return getAllBooks;
 }
 
