@@ -1,6 +1,6 @@
 import prisma from "@/app/lib/prisma";
 import { NextResponse } from "next/server";
-
+export const runtime = "edge";
 //購入履歴検索API
 export async function GET(
   request: Request,
